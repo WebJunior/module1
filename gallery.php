@@ -39,7 +39,13 @@ $imageColumnCount = ceil(count($images) / $imageRowCount);
                     <input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
                     <input type="file" class="form-control" name="img" id="img">
                     <span>Максимальный размер файла 100 КБ</span><br/>
-                    <span style="color:red;"><?php echo $_SESSION['imageErrorUpload'] ?></span><br/>
+                    <span style="color:red;">
+                        <?php
+                        if(isset($_SESSION['imageErrorUpload'])) {
+                            echo $_SESSION['imageErrorUpload'];
+                        }
+                        ?>
+                    </span><br/>
                 </div>
                 <button type="submit" class="btn btn-primary" name="submit">Загрузить</button>
             </form>
@@ -87,5 +93,8 @@ $imageColumnCount = ceil(count($images) / $imageRowCount);
 </html>
 
 <?php
-unset($_SESSION['imageErrorUpload']);
+if(isset($_SESSION['imageErrorUpload'])) {
+    unset($_SESSION['imageErrorUpload']);
+}
+
 ?>
